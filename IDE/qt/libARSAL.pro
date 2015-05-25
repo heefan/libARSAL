@@ -2,10 +2,18 @@ TARGET = libarsal
 TEMPLATE = lib
 CONFIG = static
 
-#DEFINES += LIBARDISCOVERY_LIBRARY
+linux-g++ {
+    message("linux")
+    include(/home/heefan/drone/drone_client/IDE/qt/common.pri)
+}
 
-include(/Users/heefan/drone/drone_client/IDE/qt/common.pri)
+macx{
+    message("unix")
+    include(/Users/heefan/drone/drone_client/IDE/qt/common.pri)
+}
 
+
+message($$LibARSAL_src)
 SOURCES += \
     $$LibARSAL_src/*.c
 
@@ -29,4 +37,7 @@ INCLUDEPATH += \
     $$LibARSAL_inc \
     $$LibARSALRoot/Build   #config.h
 
-LIBS += -L/usr/local/Cellar/openssl/1.0.1j/lib -lssl
+macx {
+    LIBS += -L/usr/local/Cellar/openssl/1.0.1j/lib -lssl
+}
+
