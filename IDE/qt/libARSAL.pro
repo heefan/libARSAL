@@ -1,14 +1,12 @@
-TARGET = libarsal
+TARGET = arsal
 TEMPLATE = lib
 CONFIG = static
 
 linux-g++ {
-    message("linux")
     include(/home/heefan/drone/drone_client/IDE/qt/common.pri)
 }
 
 macx{
-    message("unix")
     include(/Users/heefan/drone/drone_client/IDE/qt/common.pri)
 }
 
@@ -29,8 +27,6 @@ INCLUDEPATH = \
 #    INSTALLS += target
 #}
 
-
-
 INCLUDEPATH += \
     /usr/include/ \
     /usr/local/include \
@@ -41,3 +37,6 @@ macx {
     LIBS += -L/usr/local/Cellar/openssl/1.0.1j/lib -lssl
 }
 
+linux-g++ {
+     LIBS += -L/usr/local/lib -lssl -lcrypto -pthreadss
+}
